@@ -18,7 +18,7 @@ $ netscan /tmp/128.173.0.0 ports.txt | grep Success
 
 ## Notes
 
-To scan large networks, you'll need to increase the number of open files for the user who runs netscan. 150,000 works well for 10.0.0.0/16 networks (2^16 hosts). Experiment to find a suitable number of open files on your scanner system for your networks.
+To scan large networks, you'll need to increase the number of open files for the user who runs netscan. 150,000 works well for 10.0.0.0/16 networks (2^16 hosts). Experiment to find a suitable number of open files on your scanner system for your networks. Here's an example taken from my local __/etc/security/limits.conf__:
 
 ```bash
 user_name      soft    nofile      150000
