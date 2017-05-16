@@ -26,13 +26,12 @@ user_name      soft    nofile      150000
 user_name      hard    nofile      150000
 ```
 
-The file __ips.txt__ should be a plain text file with one IP address per line. __It must contain one or more IP addresses__ and should look something like this:
+The file __ips.txt__ should be a plain text file with one IP address per line. __It must contain one or more IP addresses.__ and should look something like this:
 
 ```bash
 192.168.1.54
 192.168.1.98
 192.168.1.134
-...
 ```
 
 The file __ports.txt__ should be a plain text file with one TCP port number per line. __It must contain one or more port numbers__ and should look something like this:
@@ -45,6 +44,6 @@ The file __ports.txt__ should be a plain text file with one TCP port number per 
 443
 445
 3389
-...
 ```
 
+netscan does not support CIDR notation.
