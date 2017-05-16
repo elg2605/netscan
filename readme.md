@@ -12,7 +12,6 @@ $ wc -l ips.txt
     65536 ips.txt
 
 $ time netscan ips.txt ports.txt > /dev/null
-
     real    0m2.851s
     user    0m10.816s
     sys 0m3.428s
