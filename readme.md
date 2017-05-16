@@ -13,7 +13,7 @@ $ go build netscan.go
 ```bash
 $ go run netscan.go ips.txt ports.txt
 $ netscan ips.txt ports.txt > results.txt
-$ netscan /tmp/128.173.0.0 ports.txt | grep Success
+$ netscan ips.txt ports.txt | grep Success
 ```
 
 ## Notes
@@ -25,7 +25,7 @@ user_name      soft    nofile      150000
 user_name      hard    nofile      150000
 ```
 
-The file __ips.txt__ should be a plain text file with one IP address per line. It must contain one or more IP addresses and should look something like this:
+The file __ips.txt__ should be a plain text file with one IP address per line. __It must contain one or more IP addresses__ and should look something like this:
 
 ```bash
 192.168.1.54
@@ -34,7 +34,7 @@ The file __ips.txt__ should be a plain text file with one IP address per line. I
 ...
 ```
 
-The file __ports.txt__ should be a plain text file with one TCP port number per line. It must contain one or more port numbers and should look something like this:
+The file __ports.txt__ should be a plain text file with one TCP port number per line. __It must contain one or more port numbers__ and should look something like this:
 
 ```bash
 21
