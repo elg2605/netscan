@@ -14,11 +14,12 @@ $ go build netscan.go
 $ go run netscan.go ips.txt ports.txt
 $ netscan ips.txt ports.txt > results.txt
 $ netscan ips.txt ports.txt | grep Success
+$ netscan ips.txt ports.txt | grep Success | awk -F , '{print $3}' > ips.txt
 ```
 
 ## Notes
 
-To scan large networks, you'll need to increase the number of open files for the user who runs netscan. 150,000 works well for 10.0.0.0/16 networks (2^16 hosts). Experiment to find a suitable number of open files on your scanner system for your networks. Here's an example taken from __/etc/security/limits.conf__:
+To scan large networks, you'll need to increase the number of open files for the user who runs netscan. 150,000 works well for 10.0.0.0/16 networks (2^16 hosts). Experiment to find a suitable number of open files on your scanner system for your networks. Here's an example from __/etc/security/limits.conf__:
 
 ```bash
 user_name      soft    nofile      150000
