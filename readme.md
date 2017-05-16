@@ -2,7 +2,7 @@
 
 netscan is a TCP port scanner intended for normal users to run on Linux systems. The goal of netscan is to find open ports quickly for later testing and deep analysis (Nmap, Nessus, etc.).
 
-# Scanning a /16 for one port
+## Scanning a /16 for one port
 
 ```bash
 $ wc -l ports.txt 
