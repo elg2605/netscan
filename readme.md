@@ -34,22 +34,23 @@ $ netscan ips.txt ports.txt | grep Success | awk -F , '{print $3}' > ips.txt
 
 ## Notes
 
-To scan large networks, you'll need to increase the number of open files for the user who runs netscan. 150,000 works well for 10.0.0.0/16 networks (2^16 hosts). Experiment to find a suitable number of open files on your scanner system for your networks. Here's an example from __/etc/security/limits.conf__ that works well for /16 (or smaller) networks:
+* To scan large networks, you'll need to increase the number of open files for the user who runs netscan. 150,000 works well for 10.0.0.0/16 networks (2^16 hosts). Experiment to find a suitable number of open files on your scanner system for your networks. Here's an example from __/etc/security/limits.conf__ that works well for /16 (or smaller) networks:
 
 ```bash
 user_name      soft    nofile      150000
 user_name      hard    nofile      150000
 ```
 
-The file __ips.txt__ should be a plain text file with one IP address per line. __It must contain one or more IP addresses.__ and should look something like this:
+* The file __ips.txt__ should be a plain text file with one IP address per line. __It must contain one or more IP addresses.__ and should look something like this:
 
 ```bash
 192.168.1.54
 192.168.1.98
 192.168.1.134
 ```
+netscan does not support CIDR notation. See __gen_ips.py__ as an example of how to generate IPs based on a CIDR prefix.
 
-The file __ports.txt__ should be a plain text file with one TCP port number per line. __It must contain one or more port numbers__ and should look something like this:
+* The file __ports.txt__ should be a plain text file with one TCP port number per line. __It must contain one or more port numbers__ and should look something like this:
 
 ```bash
 21
@@ -60,6 +61,4 @@ The file __ports.txt__ should be a plain text file with one TCP port number per 
 445
 3389
 ```
-
-netscan does not support CIDR notation. See __gen_ips.py__ as an example of how to generate IPs based on a CIDR prefix.
 
