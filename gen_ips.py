@@ -6,7 +6,7 @@
 import sys
 import time
 
-USAGE = "usage: python gen_ips.py CIDR_Prefix\nCIDR_Prefix should be 8, 16, 21, 22, 23 or 24."
+USAGE = "usage: python gen_ips.py CIDR_Prefix\nCIDR_Prefix should be 8, 16, 19, 20, 21, 22, 23 or 24."
 
 def stroke8(octet1, fp):
     """ generate a /8 list of IPs"""
@@ -18,6 +18,28 @@ def stroke8(octet1, fp):
 def stroke16(octet1, octet2, fp):
     """ generate a /16 list of IPs"""
     for octet3 in xrange(256):
+        for octet4 in xrange(256):
+            print >> fp, octet1 + "." + octet2 + "." + str(octet3) + "." + str(octet4)
+
+def stroke19(octet1, octet2, octet3, fp):
+    """ generate a /19 list of IPs"""
+    for octet4 in xrange(256):
+        print >> fp, octet1 + "." + octet2 + "." + octet3 + "." + str(octet4)
+    x = 0
+    while x < 31:
+        x = x + 1
+        octet3 = int(octet3) + 1
+        for octet4 in xrange(256):
+            print >> fp, octet1 + "." + octet2 + "." + str(octet3) + "." + str(octet4)
+
+def stroke20(octet1, octet2, octet3, fp):
+    """ generate a /20 list of IPs"""
+    for octet4 in xrange(256):
+        print >> fp, octet1 + "." + octet2 + "." + octet3 + "." + str(octet4)
+    x = 0
+    while x < 15:
+        x = x + 1
+        octet3 = int(octet3) + 1
         for octet4 in xrange(256):
             print >> fp, octet1 + "." + octet2 + "." + str(octet3) + "." + str(octet4)
 
@@ -68,6 +90,16 @@ if sys.argv[1] == '8':
 elif sys.argv[1] == '16':
     stroke16(raw_input("Enter the first octect: "),
              raw_input("Enter the second octect: "), FP)
+
+elif sys.argv[1] == '19':
+    stroke19(raw_input("Enter the first octect: "),
+             raw_input("Enter the second octect: "),
+             raw_input("Enter the third octect: "), FP)
+
+elif sys.argv[1] == '20':
+    stroke20(raw_input("Enter the first octect: "),
+             raw_input("Enter the second octect: "),
+             raw_input("Enter the third octect: "), FP)
 
 elif sys.argv[1] == '21':
     stroke21(raw_input("Enter the first octect: "),
