@@ -6,7 +6,7 @@
 import sys
 import time
 
-USAGE = "python gen_ips.py CIDR_Prefix"
+USAGE = "usage: python gen_ips.py CIDR_Prefix\nCIDR_Prefix should be 8, 16, 21, 22, 23 or 24."
 
 def stroke8(octet1, fp):
     """ generate a /8 list of IPs"""
