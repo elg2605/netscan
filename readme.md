@@ -48,8 +48,6 @@ user_name      hard    nofile      150000
 192.168.1.98
 192.168.1.134
 ```
-netscan does not support CIDR notation. See __gen_ips.py__ as an example of how to generate IPs based on a CIDR prefix.
-
 * The file __ports.txt__ must be a plain text file with one TCP port number per line. It must contain one or more port numbers.
 
 ```bash
@@ -61,4 +59,3 @@ netscan does not support CIDR notation. See __gen_ips.py__ as an example of how 
 445
 3389
 ```
-
