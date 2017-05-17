@@ -34,7 +34,7 @@ $ netscan ips.txt ports.txt | grep Success | awk -F , '{print $3}' > ips.txt
 
 ## Notes
 
-* To scan large networks, you'll need to increase the number of open files for the user who runs netscan. 150,000 works well for 10.0.0.0/16 networks (2^16 hosts). Experiment to find a suitable number of open files on your scanner system for your networks. Here's an example from __/etc/security/limits.conf__ that works well for /16 (or smaller) networks:
+* To scan large networks for multiple ports, you'll need to increase the number of open files for the user who runs netscan. 150,000 works well when scanning 40 ports on /16 networks. Experiment to find a suitable number of open files on your scanner system for your networks. Here's an example from __/etc/security/limits.conf__ that works well for /16 (or smaller) networks:
 
 ```bash
 user_name      soft    nofile      150000
