@@ -41,7 +41,7 @@ user_name      soft    nofile      150000
 user_name      hard    nofile      150000
 ```
 
-* The file __ips.txt__ must be a plain text file with one IP address or hostname per line. It must contain one or more entries. Netscan does not support CIDR notation. See the __gen_ips.py__ script in this repository as an example of how to generate a list of IPs based on a CIDR prefix. 
+* The file __ips.txt__ must be a plain text file with one IP address or hostname per line. It must contain one or more entries. Netscan does not support CIDR notation. See the __gen_ips.py__ script in this repository as an example of how to generate a list of IPs based on a CIDR prefix. Here's an example:
 
 ```bash
 192.168.1.54
@@ -51,7 +51,7 @@ user_name      hard    nofile      150000
 2001:468:c80:c111:0:401a:d2f8:de6c
 hostname.your.domain
 ```
-* The file __ports.txt__ must be a plain text file with one TCP port number per line. It must contain at least one port number.
+* The file __ports.txt__ must be a plain text file with one TCP port number per line. It must contain at least one port number. Typically, it should look something like this:
 
 ```bash
 21
