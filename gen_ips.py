@@ -1,4 +1,4 @@
-""" gen_ips.py - Generate a list of IPs for a few common CIDR prefixes.
+""" gen_ips.py - Generate a list of IPs for a few common IPv4 CIDR prefixes.
                  There are no range or sanity checks here. I assume the 
                  user understands what an octet is and what the limits are.
                  This is very basic. There are much better programs for this. """
