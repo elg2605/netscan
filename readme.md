@@ -47,6 +47,8 @@ user_name      hard    nofile      150000
 192.168.1.54
 192.168.1.98
 192.168.1.134
+2001:468:c80:c111:0:401a:d2f8:de6b
+2001:468:c80:c111:0:401a:d2f8:de6c
 ```
 * The file __ports.txt__ must be a plain text file with one TCP port number per line. It must contain one or more port numbers.
 
