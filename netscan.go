@@ -48,7 +48,9 @@ func connect(ip string, the_ports *[]string) {
 
 		conn, err := net.DialTimeout("tcp", hostPort, connection_timeout)
 		if err != nil {
-			fmt.Printf("1,%s\n", err.Error())
+			if debug {
+				fmt.Printf("1,%s\n", err.Error())
+			}
 		} else {
 			fmt.Printf("0,Success,%s,%s\n", ip, port)
 			conn.Close()
