@@ -1,6 +1,6 @@
 # Netscan
 
-Netscan is a TCP port scanner for IPv4 and IPv6 networks. It is intended for normal users to run on Linux systems. The goal of netscan is to find open server ports quickly for service tracking and later testing and deep analysis (Nmap, Nessus, etc.).
+Netscan is a TCP port scanner for IPv4 and IPv6 networks. It is intended for normal users to run on Linux, Windows or Mac systems. The goal of netscan is to find open server ports quickly for service tracking and later testing and deep analysis (Nmap, Nessus, etc.).
 
 ## Scanning a /16 for one port in about three seconds
 
@@ -17,9 +17,10 @@ $ time netscan ips.txt ports.txt > /dev/null
     sys 0m3.428s
 ```
 
-## To build
+## To get and/or build
 
 ```bash
+$ go get github.com/w8rbt/netscan
 $ go build netscan.go
 ```
 
