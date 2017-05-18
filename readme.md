@@ -17,7 +17,7 @@ $ time netscan ips.txt ports.txt > /dev/null
     sys 0m3.428s
 ```
 
-## To get and/or build
+## To get or build
 
 ```bash
 $ go get github.com/w8rbt/netscan
