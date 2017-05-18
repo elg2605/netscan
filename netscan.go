@@ -53,7 +53,7 @@ func connect(ip string, the_ports *[]string) {
 			}
 		} else {
 			fmt.Printf("0,Success,%s,%s\n", ip, port)
-		    conn.Close()
+			conn.Close()
 		}
 	}
 
