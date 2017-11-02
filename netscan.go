@@ -30,7 +30,17 @@ import "time"
 var ips []string
 var ports []string
 var debug bool = false
+
+// A WaitGroup waits for a collection of goroutines to finish. The main loop calls Add(1)
+// to set the number of goroutines to wait for. Then each of the goroutines runs and calls Done
+// when finished.
 var wg sync.WaitGroup
+
+// A buffered channel that acts as a counting semaphore. Only allow X concurrent IPs
+// to be scanned. Can adjust this number up or down depending on ulimit settings.
+// If too many open files/sockets then adjust this down. Also impacts speed of scan.
+// ls /proc/pidof netscan/fd | wc -l should be just under this
+var sem = make(chan struct{}, 16384)
 
 // create global constants
 const usage string = "usage: ./netscan ips.txt ports.txt > results.txt"
@@ -48,16 +58,18 @@ func connect(ip string, the_ports *[]string) {
 
 		conn, err := net.DialTimeout("tcp", hostPort, connection_timeout)
 		if err != nil {
-			if debug {
-				fmt.Printf("1,%s\n", err.Error())
-			}
+			fmt.Printf("1,%s\n", err.Error())
 		} else {
 			fmt.Printf("0,Success,%s,%s\n", ip, port)
 			conn.Close()
 		}
 	}
 
+	// Decrement wg counter by 1
 	defer wg.Done()
+
+	// Release semaphore
+	<-sem
 }
 
 // Load ips or ports from a text file into a slice
@@ -108,9 +120,17 @@ func main() {
 			fmt.Fprintln(os.Stderr, ip)
 		}
 
+		// Add 1 to wg counter
 		wg.Add(1)
+
+		// Acquire semaphore
+		sem <- struct{}{}
+
+		// Start go routine
 		go connect(ip, pports)
 	}
 
+	// blocks until the WaitGroup counter is zero.
 	wg.Wait()
+	close(sem)
 }
