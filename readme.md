@@ -1,6 +1,6 @@
 # Netscan
 
-Netscan is a TCP port scanner for IPv4 and IPv6 networks. It is intended for normal users to run on Linux, Windows or Mac systems. The goal of netscan is to find open server ports quickly for service tracking and later testing and deep analysis (Nmap, Nessus, etc.). Netscan results are intended to be loaded into a relational database.
+Netscan is a fast TCP port scanner for IPv4 and IPv6 networks. It is intended for normal users to run on Linux, Windows or Mac systems. The goal of netscan is to find open server ports quickly for service tracking and later testing and deep analysis (Nmap, Nessus, etc.). Netscan results are intended to be loaded into a relational database.
 
 ## Scanning a /16 for one port in about three seconds
 
@@ -17,21 +17,21 @@ $ time netscan ips.txt ports.txt > /dev/null
     sys 0m3.428s
 ```
 
-## To get or build
+## To get or build netscan
 
 ```bash
 $ go get github.com/w8rbt/netscan
 $ go build netscan.go
 ```
 
-## To run 
+## To run netscan
 
 ```bash
 $ go run netscan.go ips.txt ports.txt
 $ netscan ips.txt ports.txt > results.txt
 ```
 
-## To extract successful connections from results
+## To extract successful connections for DB loading
 ```bash
 $ grep Success results.txt 
 0,Success,192.168.1.72,22
@@ -64,7 +64,7 @@ user_name      hard    nofile      150000
 2001:468:c80:c111:0:401a:d2f8:de6c
 hostname.your.domain
 ```
-* The file __ports.txt__ must be a plain text file with one TCP port number per line. It must contain at least one port number. Typically, it should look something like this:
+* The file __ports.txt__ must be a plain text file with one TCP port number per line. It must contain at least one port number. Typically, __ports.txt__ would look something like this:
 
 ```bash
 21
