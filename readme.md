@@ -27,7 +27,6 @@ $ go build netscan.go
 ## To run netscan
 
 ```bash
-$ go run netscan.go ips.txt ports.txt
 $ netscan ips.txt ports.txt > results.txt
 ```
 
