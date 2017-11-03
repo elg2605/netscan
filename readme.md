@@ -24,13 +24,25 @@ $ go get github.com/w8rbt/netscan
 $ go build netscan.go
 ```
 
-## To run (pick one) 
+## To run 
 
 ```bash
 $ go run netscan.go ips.txt ports.txt
 $ netscan ips.txt ports.txt > results.txt
-$ netscan ips.txt ports.txt | grep Success
-$ netscan ips.txt ports.txt | grep Success | awk -F , '{print $3}' > ips.txt
+```
+
+## To extract successful connections from results
+```bash
+$ grep Success results.txt 
+0,Success,192.168.1.72,22
+0,Success,192.168.1.72,80
+0,Success,192.168.1.72,111
+0,Success,192.168.1.3,22
+0,Success,192.168.1.1,443
+0,Success,192.168.1.65,22
+0,Success,192.168.1.8,3128
+0,Success,192.168.1.65,111
+...
 ```
 
 ## Notes
