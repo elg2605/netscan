@@ -2,19 +2,15 @@
 
 Netscan is a fast TCP port scanner for IPv4 and IPv6 networks. It is intended for normal users to run on Linux, Windows or Mac systems. The goal of netscan is to find open server ports quickly for service tracking and later testing and deep analysis (Nmap, Nessus, etc.). Netscan results are intended to be loaded into a relational database.
 
-## Scanning a /16 for one port in about three seconds
+## Time to scan a /12 (1 million IPs) for 40 ports
 
 ```bash
-$ wc -l ports.txt 
-    1 ports.txt
+$ time ./netscan 172.txt ports.txt > 172.results.txt
 
-$ wc -l ips.txt 
-    65536 ips.txt
+real    44m3.894s
+user    24m15.180s
+sys     48m20.012s
 
-$ time netscan ips.txt ports.txt > /dev/null
-    real    0m2.851s
-    user    0m10.816s
-    sys 0m3.428s
 ```
 
 ## To get or build netscan
@@ -28,20 +24,6 @@ $ go build netscan.go
 
 ```bash
 $ netscan ips.txt ports.txt > results.txt
-```
-
-## To extract successful connections for DB loading
-```bash
-$ grep Success results.txt 
-0,Success,192.168.1.72,22
-0,Success,192.168.1.72,80
-0,Success,192.168.1.72,111
-0,Success,192.168.1.3,22
-0,Success,192.168.1.1,443
-0,Success,192.168.1.65,22
-0,Success,192.168.1.8,3128
-0,Success,192.168.1.65,111
-...
 ```
 
 ## Notes
