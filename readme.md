@@ -1,8 +1,8 @@
 # Netscan
 
-Netscan is a fast TCP port scanner for IPv4 and IPv6 networks. It is intended for normal users to run on Linux, Windows or Mac systems. The goal of netscan is to find open server ports quickly for service tracking and later testing and deep analysis (Nmap, Nessus, etc.). Netscan results are intended to be loaded into a relational database.
+Netscan is a fast TCP port scanner for IPv4 and IPv6 networks. Netscan is written in Go and is intended for normal users to run on Linux, Windows or Mac systems. The goal of netscan is to find open server ports quickly for service tracking and later testing and deep analysis using tools such as Nmap and Nessus. Netscan results are intended to be loaded into a relational database.
 
-## Time to scan a /12 (1 million IPs) for 40 ports
+## Scan a /12 network for 40 ports
 
 ```bash
 $ time ./netscan 172.txt ports.txt > 172.results.txt
@@ -28,7 +28,7 @@ $ netscan ips.txt ports.txt > results.txt
 
 ## Notes
 
-* To scan large networks for multiple ports, you'll need to increase the number of open files for the user who runs netscan. 150,000 works well when scanning 40 ports on /16 IPv4 networks. Experiment to find a suitable number of open files on your scanner system for your networks. Here's an example from __/etc/security/limits.conf__ that works well for /16 (or smaller) networks:
+* To scan large networks for dozens of ports, you'll need to increase the number of open files for the user who runs netscan. Experiment to find a suitable number of open files on your scanner system for your networks. Here's an example from __/etc/security/limits.conf__:
 
 ```bash
 user_name      soft    nofile      150000
@@ -39,9 +39,6 @@ user_name      hard    nofile      150000
 
 ```bash
 192.168.1.54
-192.168.1.98
-192.168.1.134
-2001:468:c80:c111:0:401a:d2f8:de6b
 2001:468:c80:c111:0:401a:d2f8:de6c
 hostname.your.domain
 ```
