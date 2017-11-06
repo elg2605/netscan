@@ -25,6 +25,14 @@ import "os"
 import "sync"
 import "time"
 
+// Get current date
+var date = time.Now()
+var date_string = date.Format("2006-01-02")
+
+// Is the scanner remote to the network or on the
+// internal network?
+var remote = false
+
 // create a global empty slice of strings
 // and a bool for debugging
 var ips []string
@@ -40,7 +48,7 @@ var wg sync.WaitGroup
 // to be scanned. Can adjust this number up or down depending on ulimit settings.
 // If too many open files/sockets then adjust this down. Also impacts speed of scan.
 // ls /proc/pidof netscan/fd | wc -l should be just under this
-var sem = make(chan struct{}, 16384)
+var sem = make(chan struct{}, 32768)
 
 // create global constants
 const usage string = "usage: ./netscan ips.txt ports.txt > results.txt"
@@ -58,9 +66,11 @@ func connect(ip string, the_ports *[]string) {
 
 		conn, err := net.DialTimeout("tcp", hostPort, connection_timeout)
 		if err != nil {
-			fmt.Printf("1,%s\n", err.Error())
+			if debug {
+				fmt.Printf("1,%s\n", err.Error())
+			}
 		} else {
-			fmt.Printf("0,Success,%s,%s\n", ip, port)
+			fmt.Printf("%s,%s,%s 00:00:00,%t\n", ip, port, date_string, remote)
 			conn.Close()
 		}
 	}
