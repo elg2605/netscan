@@ -2,7 +2,7 @@
 
 Netscan is a fast TCP port scanner for IPv4 and IPv6 networks. Netscan is written in Go and is intended for normal users to run on Linux, Windows or Mac systems. The goal of netscan is to find open server ports quickly for service tracking and later testing and deep analysis using tools such as Nmap and Nessus. Netscan results are intended to be loaded into a relational database.
 
-## Scan a /12 network for 40 ports
+## Scan 1 million hosts for 45 common server ports
 
 ```bash
 $ time ./netscan 172.txt ports.txt > 172.results.txt
@@ -28,7 +28,7 @@ $ netscan ips.txt ports.txt > results.txt
 
 ## Notes
 
-* To scan large networks for dozens of ports, you'll need to increase the number of open files for the user who runs netscan. Experiment to find a suitable number of open files on your scanner system for your networks. Here's an example from __/etc/security/limits.conf__:
+* To scan large networks for many dozen ports, you may consider increasing the number of open files for the user who runs netscan and also increasing the size of the counting semaphore. Experiment to find a suitable number of on your scanner systems for your particular networks. Here's an example from __/etc/security/limits.conf__:
 
 ```bash
 user_name      soft    nofile      150000
@@ -53,3 +53,8 @@ hostname.your.domain
 445
 3389
 ```
+
+## How to scan IPv6 networks efficiently
+
+Add AAAA DNS records for all of your IPv6 servers and allow your netscan scan engines to do zone transfers. This basically limits the scan to what you have in the DNS. 
+
