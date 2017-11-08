@@ -28,7 +28,7 @@ $ netscan ips.txt ports.txt > results.txt
 
 ## Notes
 
-* To scan large networks for many dozens of ports, you may consider increasing the number of open files for the user who runs netscan and also increasing the size of the counting semaphore. Experiment to find a suitable number of on your scanner systems for your particular networks. Here's an example on Linux systems in the file __/etc/security/limits.conf__:
+* To scan large networks for many dozens of ports, consider increasing the number of open files for the user who runs netscan and also increasing the size of the counting semaphore in the netscan code. Experiment to find a suitable number on your scanner systems for your particular networks. Here's an example on Linux systems in the file __/etc/security/limits.conf__:
 
 ```bash
 user_name      soft    nofile      150000
