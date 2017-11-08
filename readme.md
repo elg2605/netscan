@@ -56,5 +56,5 @@ hostname.your.domain
 
 ## How to scan IPv6 networks efficiently
 
-Add AAAA DNS records for all of your IPv6 servers and allow your netscan scan engines to do zone transfers. This basically limits the scan to what you have in the DNS. 
+Add AAAA DNS records for all of your IPv6 servers and allow your netscan scan engines to do zone transfers. This limits the scan to IPv6 enabled servers that are in the DNS. 
 
