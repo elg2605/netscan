@@ -44,10 +44,10 @@ var debug bool = false
 // when finished.
 var wg sync.WaitGroup
 
-// A buffered channel that acts as a counting semaphore. Only allow X concurrent IPs
-// to be scanned. Can adjust this number up or down depending on ulimit settings.
-// If too many open files/sockets then adjust this down. Also impacts speed of scan.
-// ls /proc/pidof netscan/fd | wc -l should be just under this
+// A channel that acts as a counting semaphore. Only allow X concurrent connections.
+// The number here can be adjusted up or down. If too many open files/sockets then
+// adjust this down. Lower numbers mean slower scan times.
+// `ls /proc/pidof netscan/fd | wc -l` should be just under this
 var sem = make(chan struct{}, 32768)
 
 // create global constants
@@ -75,10 +75,10 @@ func connect(ip string, the_ports *[]string) {
 		}
 	}
 
-	// Decrement wg counter by 1
+	// Decrements wg counter by 1
 	defer wg.Done()
 
-	// Release semaphore
+	// Receive Signal
 	<-sem
 }
 
@@ -133,7 +133,7 @@ func main() {
 		// Add 1 to wg counter
 		wg.Add(1)
 
-		// Acquire semaphore
+		// Send Signal into channel
 		sem <- struct{}{}
 
 		// Start go routine
