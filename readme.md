@@ -16,7 +16,7 @@ sys     48m20.012s
 ## To get or build netscan
 
 ```bash
-$ go get github.com/w8rbt/netscan
+$ go get github.com/62726164/netscan
 $ go build netscan.go
 ```
 
