@@ -9,8 +9,9 @@ description text not null default 'unknown');
 
 create table hosts(
 address inet primary key,
-name varchar(128) not null default 'unknown'
-);
+name varchar(128) not null default 'unknown',
+lat real default 0.0,
+lon real default 0.0);
 
 create table activity(
 date timestamp not null,
