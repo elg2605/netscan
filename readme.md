@@ -58,3 +58,5 @@ hostname.your.domain
 
 Add AAAA DNS records for all of your IPv6 servers and allow your netscan scan engines to do zone transfers. This limits the scan to IPv6 enabled servers that are in the DNS. 
 
+You may also consider using a network management tool, such as [netdisco](http://netdisco.org/), as input to netscan.
+
