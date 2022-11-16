@@ -6,7 +6,10 @@
 import sys
 import time
 
-USAGE = "usage: python gen_ips.py CIDR_Prefix\nCIDR_Prefix should be 8, 16, 19, 20, 21, 22, 23 or 24."
+USAGE_CIDR = "CIDR_Prefix should be 8, 16, 19, 20, 21, 22, 23 or 24.\n"
+USAGE1 = "usage(1): python gen_ips.py CIDR_Prefix\n"
+USAGE2 = "usage(2): python gen_ips.py CIDR_Prefix <OCTECT> <OCTECT> <OCTECT>\n"
+USAGE = USAGE_CIDR + USAGE1 + USAGE2
 
 def stroke8(octet1, fp):
     """ generate a /8 list of IPs"""
@@ -79,50 +82,113 @@ def stroke24(octet1, octet2, octet3, fp):
         print(octet1 + "." + octet2 + "." + octet3 + "." + str(octet4), file=fp)
 
 # main
-if len(sys.argv) != 2:
+
+if len(sys.argv) < 2:
     sys.exit(USAGE)
 
-FP = open('ips_%s.txt' %time.time(), 'w')
+filename = 'ips_%s.txt' %time.time()
+FP = open(filename, 'w')
 
-if sys.argv[1] == '8':
-    stroke8(input("Enter the first octect: "), FP)
+if len(sys.argv) == 2:
+    if sys.argv[1] == '8':
+        stroke8(input("Enter the first octect: "), FP)
+        print(filename)
+        sys.exit()
 
-elif sys.argv[1] == '16':
-    stroke16(input("Enter the first octect: "),
-             input("Enter the second octect: "), FP)
+    elif sys.argv[1] == '16':
+        stroke16(input("Enter the first octect: "),
+                input("Enter the second octect: "), FP)
+        print(filename)
+        sys.exit()
 
-elif sys.argv[1] == '19':
-    stroke19(input("Enter the first octect: "),
-             input("Enter the second octect: "),
-             input("Enter the third octect: "), FP)
+    elif sys.argv[1] == '19':
+        stroke19(input("Enter the first octect: "),
+                input("Enter the second octect: "),
+                input("Enter the third octect: "), FP)
+        print(filename)
+        sys.exit()
 
-elif sys.argv[1] == '20':
-    stroke20(input("Enter the first octect: "),
-             input("Enter the second octect: "),
-             input("Enter the third octect: "), FP)
+    elif sys.argv[1] == '20':
+        stroke20(input("Enter the first octect: "),
+                input("Enter the second octect: "),
+                input("Enter the third octect: "), FP)
+        print(filename)
+        sys.exit()
 
-elif sys.argv[1] == '21':
-    stroke21(input("Enter the first octect: "),
-             input("Enter the second octect: "),
-             input("Enter the third octect: "), FP)
+    elif sys.argv[1] == '21':
+        stroke21(input("Enter the first octect: "),
+                input("Enter the second octect: "),
+                input("Enter the third octect: "), FP)
+        print(filename)
+        sys.exit()
 
-elif sys.argv[1] == '22':
-    stroke22(input("Enter the first octect: "),
-             input("Enter the second octect: "),
-             input("Enter the third octect: "), FP)
+    elif sys.argv[1] == '22':
+        stroke22(input("Enter the first octect: "),
+                input("Enter the second octect: "),
+                input("Enter the third octect: "), FP)
+        print(filename)
+        sys.exit()
 
-elif sys.argv[1] == '23':
-    stroke23(input("Enter the first octect: "),
-             input("Enter the second octect: "),
-             input("Enter the third octect: "), FP)
+    elif sys.argv[1] == '23':
+        stroke23(input("Enter the first octect: "),
+                input("Enter the second octect: "),
+                input("Enter the third octect: "), FP)
+        print(filename)
+        sys.exit()
 
-elif sys.argv[1] == '24':
-    stroke24(input("Enter the first octect: "),
-             input("Enter the second octect: "),
-             input("Enter the third octect: "), FP)
+    elif sys.argv[1] == '24':
+        stroke24(input("Enter the first octect: "),
+                input("Enter the second octect: "),
+                input("Enter the third octect: "), FP)
+        print(filename)
+        sys.exit()
+    else:
+        print("%s is not a supported CIDR prefix." %sys.argv[1])
+        sys.exit(USAGE)
 
+elif len(sys.argv) > 2 and len(sys.argv) < 7:
+    # first arg is MASK
+    # second would be first octect
+    # third would be the second octect
+    # fourth would be the third octect
+    if sys.argv[1] == '8':
+        stroke8(sys.argv[2], FP)
+        print(filename)
+        sys.exit()
+    elif sys.argv[1] == '16':
+        stroke16(sys.argv[2], sys.argv[3], FP)
+        print(filename)
+        sys.exit()
+    elif sys.argv[1] == '19':
+        stroke19(sys.argv[2], sys.argv[3], sys.argv[4], FP)
+        print(filename)
+        sys.exit()
+    elif sys.argv[1] == '20':
+        stroke20(sys.argv[2], sys.argv[3], sys.argv[4], FP)
+        print(filename)
+        sys.exit()
+    elif sys.argv[1] == '21':
+        stroke21(sys.argv[2], sys.argv[3], sys.argv[4], FP)
+        print(filename)
+        sys.exit()
+    elif sys.argv[1] == '22':
+        stroke22(sys.argv[2], sys.argv[3], sys.argv[4], FP)
+        print(filename)
+        sys.exit()
+    elif sys.argv[1] == '23':
+        stroke23(sys.argv[2], sys.argv[3], sys.argv[4], FP)
+        print(filename)
+        sys.exit()
+    elif sys.argv[1] == '24':
+        stroke24(sys.argv[2], sys.argv[3], sys.argv[4], FP)
+        print(filename)
+        sys.exit()
+    else:
+        print("%s is not a supported CIDR prefix." %sys.argv[1])
+        sys.exit(USAGE)
 else:
-    print("%s is not a supported CIDR prefix." %sys.argv[1])
+    print("invalid arguments")
+    sys.exit(USAGE)
 
 FP.close()
 
