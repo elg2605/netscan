@@ -6,7 +6,7 @@
 import sys
 import time
 
-USAGE_CIDR = "CIDR_Prefix should be 8, 16, 19, 20, 21, 22, 23 or 24.\n"
+USAGE_CIDR = "CIDR_Prefix should be 8, 16, 19, 20, 21, 22, 23, 24 or 32.\n"
 USAGE1 = "usage(1): python gen_ips.py CIDR_Prefix\n"
 USAGE2 = "usage(2): python gen_ips.py CIDR_Prefix <OCTECT> <OCTECT> <OCTECT>\n"
 USAGE = USAGE_CIDR + USAGE1 + USAGE2
@@ -80,6 +80,10 @@ def stroke24(octet1, octet2, octet3, fp):
     """ generate a /24 list of IPs"""
     for octet4 in range(256):
         print(octet1 + "." + octet2 + "." + octet3 + "." + str(octet4), file=fp)
+
+def stroke32(octet1, octet2, octet3, octet4, fp):
+    """ generate a /32 IP file"""
+    print(octet1 + "." + octet2 + "." + octet3 + "." + octet4, file=fp)
 
 # main
 
@@ -181,6 +185,10 @@ elif len(sys.argv) > 2 and len(sys.argv) < 7:
         sys.exit()
     elif sys.argv[1] == '24':
         stroke24(sys.argv[2], sys.argv[3], sys.argv[4], FP)
+        print(filename)
+        sys.exit()
+    elif sys.argv[1] == '32':
+        stroke32(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], FP)
         print(filename)
         sys.exit()
     else:
